@@ -644,6 +644,7 @@ add_shortcode('register-form', array('app\shortCode', 'register_form'));
 /** add style file */
 function add_theme_scripts()
 {
+
     wp_enqueue_style("font-awesome.min", URL_THEME . '/assets/vendor/fontawesome/font-awesome.min.css', false, '1.1', 'all');
     wp_enqueue_style("swiper.min", URL_THEME . '/assets/vendor/swiper/css/swiper.min.css', false, '1.1', 'all');
 
