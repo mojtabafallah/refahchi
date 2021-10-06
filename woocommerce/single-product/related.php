@@ -68,7 +68,7 @@ if ($related_products) : ?>
                             <?php else: ?>
                                 <span class="price">
 
-                                    <?php echo 'قیمت محصول' . $product->get_regular_price(); ?>تومان
+                                    <?php echo 'قیمت محصول' . number_format( $product->get_regular_price()); ?>تومان
 
                             </span>
                                 <?php

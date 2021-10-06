@@ -53,10 +53,10 @@
                     </form>
                     <h3 class="head">ما را در شبکه های اجتماعی دنبال کنید</h3>
                     <div class="social">
-                        <a href=""><i class="fa fa-instagram"></i></a>
-                        <a href=""><i class="fa fa-twitter-square"></i></a>
-                        <a href=""><i class="fa fa-facebook-square"></i></a>
-                        <a href=""><i class="fa fa-google-plus-square"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/refahchi/"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/in/%D9%81%D8%B1%D9%88%D8%B4%DA%AF%D8%A7%D9%87-%D8%A7%DB%8C%D9%86%D8%AA%D8%B1%D9%86%D8%AA%DB%8C-%D8%B1%D9%81%D8%A7%D9%87-%DA%86%DB%8C-a69195222"><i class="fa fa-linkedin"></i></a>
+                        <a target="_blank" href=""><i class="fa fa-facebook-square"></i></a>
+                        <a target="_blank" href=""><i class="fa fa-google-plus-square"></i></a>
                     </div>
                 </div>
             </div>
@@ -69,17 +69,7 @@
             </div>
         </div> <!-- footer-content -->
 
-        <!--        <div class="footer-contact">-->
-        <!--            <div class="contact">-->
-        <!--                <span>هفت روز هفته, ۲۴ ساعت شبانه روز پاسخگوی شما هستیم,</span>-->
-        <!--                <span>شماره تماس : ۰۴۴-۳۳۳۳</span>-->
-        <!--                <span>آدرس ایمیل : info@site.com</span>-->
-        <!--            </div>-->
-        <!--            <div class="app">-->
-        <!--                <img src="--><?php //echo URL_THEME ?><!--/assets/images/bazar.png" alt="">-->
-        <!--                <img src="--><?php //echo URL_THEME ?><!--/assets/images/sibapp.png" alt="">-->
-        <!--            </div>-->
-        <!--        </div>-->
+
 
         <div class="copyright">
             <p>استفاده از مطالب  <?php echo get_bloginfo( 'name' );?> فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق

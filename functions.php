@@ -313,8 +313,7 @@ function add_brand_tax()
             'hierarchical' => true,
             'label' => 'برند',
             'query_var' => true,
-            'has_archive' => true,
-            'rewrite' => array('slug' => 'attraction')
+            'has_archive' => true
         )
     );
 }

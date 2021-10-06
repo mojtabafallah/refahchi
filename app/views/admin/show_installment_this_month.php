@@ -143,7 +143,12 @@ endforeach;
                     $author = get_user_by('id', $seller);
                     $vendor = dokan()->vendor->get($seller);
 
-                    $store_info = dokan_get_store_info($author->ID);
+                    if ($author)
+                    {
+                        $store_info = dokan_get_store_info($author->ID);
+                    }
+
+
                     if (!empty($store_info['store_name'])) { ?>
                         <span class="details">
                         <?php printf(' <a href="%s">%s</a>', $vendor->get_shop_url(), $vendor->get_shop_name()); ?>

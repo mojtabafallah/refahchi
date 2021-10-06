@@ -76,14 +76,12 @@ if (post_password_required()) {
 
             </div>
             <aside class="c-product__feature">
-                <a class="i-item" href="#"> <img src="<?php echo URL_THEME ?>/assets/images/icon/i1.svg" alt=""> <span>امکان تحویل اکسپرس</span>
-                </a>
+
                 <a class="i-item" href="#"> <img src="<?php echo URL_THEME ?>/assets/images/icon/i2.svg" alt=""> <span>پشتیبانی ۲۴ ساعته</span>
                 </a>
                 <a class="i-item" href="#"> <img src="<?php echo URL_THEME ?>/assets/images/icon/i3.svg" alt="">
                     <span>امکان پرداخت در محل</span> </a>
-                <a class="i-item" href="#"> <img src="<?php echo URL_THEME ?>/assets/images/icon/i4.svg" alt="">
-                    <span>۷ روز ضمانت بازگشت کالا</span> </a>
+
                 <a class="i-item" href="#"> <img src="<?php echo URL_THEME ?>/assets/images/icon/i5.svg" alt="">
                     <span>ضمانت اصل بودن کالا</span> </a>
             </aside>

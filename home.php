@@ -75,22 +75,26 @@
 </article>
 <div class="clear"></div>
 
-<div class="c-swiper-specials--incredible">
-    <section class="icontainer">
-        <a href="#" class="specials__title">
-            <img src="<?php echo URL_THEME ?>/assets/images/d9b15d68.png" alt="پیشنهاد شگفت‌انگیز">
-            <div class="specials__btn">مشاهده همه</div>
-        </a>
-        <div class="swiper--specials">
-            <div id="inc-slider" class="swiper-container">
-                <div class="product-box swiper-wrapper">
-                    <?php
-                    global $product;
-                    $special = new WP_Query([
-                        'post_type' => "product",
-                        'posts_per_page' => "-1"
-                    ]);
-                    if ($special->have_posts()): ?>
+<?php
+global $product;
+$special = new WP_Query([
+    'post_type' => "product",
+    'posts_per_page' => "-1",
+    'meta_query' => WC()->query->get_meta_query(),
+    'post__in' => array_merge(array(0), wc_get_product_ids_on_sale())
+]);
+if ($special->have_posts()): ?>
+
+    <div class="c-swiper-specials--incredible">
+        <section class="icontainer">
+            <a href="#" class="specials__title">
+                <img src="<?php echo URL_THEME ?>/assets/images/d9b15d68.png" alt="پیشنهاد شگفت‌انگیز">
+                <div class="specials__btn">مشاهده همه</div>
+            </a>
+            <div class="swiper--specials">
+                <div id="inc-slider" class="swiper-container">
+                    <div class="product-box swiper-wrapper">
+
 
                         <?php while ($special->have_posts()): $special->the_post(); ?>
 
@@ -132,14 +136,13 @@
 
 
                         <?php endwhile; ?>
-                    <?php endif; ?>
 
 
+                    </div>
                 </div>
-            </div>
-    </section>
-</div>
-
+        </section>
+    </div>
+<?php endif; ?>
 
 <section class="image-row container">
 
@@ -182,7 +185,7 @@
 <div class="c-swiper-specials--incredible c-swiper-specials--fresh">
     <section class="icontainer">
         <a href="#" class="specials__title">
-            <img src="<?php echo URL_THEME ?>/assets/images/8af90c4b.png" alt="پیشنهاد شگفت‌انگیز">
+            <img src="<?php echo URL_THEME ?>/assets/images/8af90c4b.png" alt="پیشنهاد شگفت‌انگیز1">
             <div class="specials__btn">مشاهده همه</div>
         </a>
         <div class="swiper--specials">
@@ -204,45 +207,49 @@
                     ));
 
 
-                    if ($featured_query->have_posts()) : while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
-                        <div class="product-item swiper-slide">
-                            <a href="<?php the_permalink(); ?>"><img src="<?php echo get_the_post_thumbnail_url() ?>"
-                                                                     alt=""></a>
-                            <a class="title" href="<?php the_permalink(); ?>"><?php the_title() ?></a>
+                    if ($featured_query->have_posts()) :
 
-                            <?php if ($product->is_on_sale()): ?>
-                                <div class="inc-product-price">
-                                    <del><?php echo number_format($product->get_regular_price()) ?>تومان</del>
-                                    <div class="c-price__discount-oval"><span>
+                        while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
+                            <div class="product-item swiper-slide">
+                                <a href="<?php the_permalink(); ?>"><img
+                                            src="<?php echo get_the_post_thumbnail_url() ?>"
+                                            alt=""></a>
+                                <a class="title" href="<?php the_permalink(); ?>"><?php the_title() ?></a>
+
+                                <?php if ($product->is_on_sale()): ?>
+                                    <div class="inc-product-price">
+                                        <del><?php echo number_format($product->get_regular_price()) ?>تومان</del>
+                                        <div class="c-price__discount-oval"><span>
                                                 <?php
                                                 $a = 100 - (100 * $product->get_sale_price()) / $product->get_regular_price();
                                                 echo intval($a); ?>
                                                 ٪</span></div>
-                                    <span class="price"><?php echo number_format($product->get_price()); ?> </span>تومان
-                                </div>
-                                <?php if ($product->get_date_on_sale_from()): ?>
-                                    <div class="c-product-box__amazing">
-                                        <?php
-                                        $date_to = $product->get_date_on_sale_to();
+                                        <span class="price"><?php echo number_format($product->get_price()); ?> </span>تومان
+                                    </div>
+                                    <?php if ($product->get_date_on_sale_from()): ?>
+                                        <div class="c-product-box__amazing">
+                                            <?php
+                                            $date_to = $product->get_date_on_sale_to();
 
-                                        $date_to = date('Y/m/d h:i:s', strtotime($date_to));
+                                            $date_to = date('Y/m/d h:i:s', strtotime($date_to));
 
 
-                                        ?>
-                                        <div class="c-product-box__timer" data-countdown="<?php echo $date_to ?>">
-                                            ۱۲:۵۲:۳۹
+                                            ?>
+                                            <div class="c-product-box__timer" data-countdown="<?php echo $date_to ?>">
+                                                ۱۲:۵۲:۳۹
+                                            </div>
                                         </div>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <div class="inc-product-price">
+                                        <span class="price"><?php echo number_format($product->get_price()) ?></span>
+                                        تومان
                                     </div>
                                 <?php endif; ?>
-                            <?php else: ?>
-                                <div class="inc-product-price">
-                                    <span class="price"><?php echo number_format($product->get_price()) ?></span> تومان
-                                </div>
-                            <?php endif; ?>
 
 
-                        </div><!--item-->
-                    <?php endwhile;
+                            </div><!--item-->
+                        <?php endwhile;
 
                     else:
                         echo "no product";
@@ -511,10 +518,9 @@ $best_sell = new WP_Query($args);
                 $termid = $term->term_id;
                 $imgbrand = get_option("img_$termid");
                 if ($imgbrand) {
-
                     ?>
                     <div class="product-item swiper-slide">
-                        <a href="#"><img src="<?php echo $imgbrand ?>" alt=""></a>
+                        <a href="brand/<?php echo $term->slug ?>"><img src="<?php echo $imgbrand ?>" alt=""></a>
                     </div>
                     <?php
 

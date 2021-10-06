@@ -59,25 +59,29 @@ $allowed_html = array(
                     ?>
 
                     <?php global $product;
-                    if($ids_product_fav)
-                    {
+                    if ($ids_product_fav) {
 
 
-                    foreach ($ids_product_fav as $id):
-                        $product_f=wc_get_product($id);
-                        ?>
-                        <div class="wishlit-item" data-idproduct="<?php echo $id ?>">
-                            <a target="_blank" href="<?php echo $product_f->get_permalink()?>"><?php echo $product_f->get_image()?></a>
-                            <div class="wishlit-item__title">
-                                <a target="_blank" href="<?php echo $product_f->get_permalink()?>"><?php echo $product_f->get_name()?></a>
-                                <span class="out-stock"><?php echo $product_f->get_price()?></span>
-                            </div>
-                            <button class="remove_fav_btn2"><span class="dashicons dashicons-trash remove_fav_btn1" data-idproduct="<?php echo $id ?>"></span></button>
-                        </div>
-                    <?php endforeach;
-                    }?>
-
-
+                        foreach ($ids_product_fav as $id):
+                            $product_f = wc_get_product($id);
+                            if ($product_f):
+                                ?>
+                                <div class="wishlit-item" data-idproduct="<?php echo $id ?>">
+                                    <a target="_blank"
+                                       href="<?php echo $product_f->get_permalink() ?>"><?php echo $product_f->get_image() ?></a>
+                                    <div class="wishlit-item__title">
+                                        <a target="_blank"
+                                           href="<?php echo $product_f->get_permalink() ?>"><?php echo $product_f->get_name() ?></a>
+                                        <span class="out-stock"><?php echo $product_f->get_price() ?></span>
+                                    </div>
+                                    <button class="remove_fav_btn2"><span
+                                                class="dashicons dashicons-trash remove_fav_btn1"
+                                                data-idproduct="<?php echo $id ?>"></span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach;
+                    } ?>
 
 
                 </div>

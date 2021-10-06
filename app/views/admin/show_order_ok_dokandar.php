@@ -28,7 +28,7 @@ foreach ($allorders as $order) {
 
 <?php
 global $wpdb;
-$id_user=get_current_user_id();
+$id_user = get_current_user_id();
 $all_wait_order = $wpdb->get_results("select * from {$wpdb->prefix}order_details where id_investor={$id_user}");
 
 
@@ -125,7 +125,11 @@ $all_wait_order = $wpdb->get_results("select * from {$wpdb->prefix}order_details
                 <td>
                     <?php
                     $p = wc_get_product($item->id_product);
-                    echo number_format($p->get_price()) ?>تومان
+                    if ($p) {
+                        echo number_format($p->get_price()) . "تومان";
+                    }
+
+                    ?>
                 </td>
                 <td>
                     <?php echo number_format($item->price_installment) ?>تومان
@@ -142,8 +146,8 @@ $all_wait_order = $wpdb->get_results("select * from {$wpdb->prefix}order_details
                 <td>
                     <?php
 
-                     $order= wc_get_order($item->id_order);
-                     echo jdate("Y-n-j H:i:s", strtotime($order->get_date_created()));
+                    $order = wc_get_order($item->id_order);
+                    echo jdate("Y-n-j H:i:s", strtotime($order->get_date_created()));
 
                     ?>
                 </td>
@@ -151,7 +155,7 @@ $all_wait_order = $wpdb->get_results("select * from {$wpdb->prefix}order_details
                     <?php
                     $wpdb->get_results("select * from {$wpdb->prefix}installments where id_details={$item->id} and status=1 ")
                     ?>
-                    <?php echo $item->num_month?> /    <?php echo $wpdb->num_rows?>
+                    <?php echo $item->num_month ?> / <?php echo $wpdb->num_rows ?>
                 </td>
 
 

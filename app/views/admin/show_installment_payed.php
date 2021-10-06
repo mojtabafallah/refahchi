@@ -7,7 +7,7 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
     <h1>
         همه اقساط
     </h1>
-    <div  style="display: flex">
+    <div style="display: flex">
         <input type="hidden" id="section" value="payed">
         <label for="id_order">شناسه خرید</label>
         <input type="text" class="filter_list_installment" id="id_order">
@@ -20,14 +20,14 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
             $query = new WP_Query(array(
                 'post_type' => 'organization',
                 'post_status' => 'publish',
-                'posts_per_page'=>-1
+                'posts_per_page' => -1
             ));
 
 
             while ($query->have_posts()) {
                 $query->the_post();
                 $post_id = get_the_ID();
-                echo "<option value='$post_id'>".get_the_title()."</option>";
+                echo "<option value='$post_id'>" . get_the_title() . "</option>";
             }
 
             wp_reset_query();
@@ -38,8 +38,8 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
         <label for="from">از تاریخ</label>
         <select id="from_day" class="filter_list_installment">
             <option value="">روز</option>
-            <?php for ($i = 1; $i <= 31; $i++):?>
-                <option value="<?php echo $i?>"><?php echo $i?></option>
+            <?php for ($i = 1; $i <= 31; $i++): ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
             <?php endfor; ?>
         </select>
         <select id="from_month" class="filter_list_installment">
@@ -60,15 +60,15 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
         <select id="from_year" class="filter_list_installment">
             <option value="">سال</option>
 
-            <?php for ($i = 1400; $i <= 1430; $i++):?>
-                <option value="<?php echo $i?>"><?php echo $i?></option>
+            <?php for ($i = 1400; $i <= 1430; $i++): ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
             <?php endfor; ?>
         </select>
         <label for="from">تا تاریخ</label>
-        <select id="to_day" class="filter_list_installment" >
+        <select id="to_day" class="filter_list_installment">
             <option value="">روز</option>
-            <?php for ($i = 1; $i <= 31; $i++):?>
-                <option value="<?php echo $i?>"><?php echo $i?></option>
+            <?php for ($i = 1; $i <= 31; $i++): ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
             <?php endfor; ?>
         </select>
         <select id="to_month" class="filter_list_installment">
@@ -88,8 +88,8 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
         </select>
         <select id="to_year" class="filter_list_installment">
             <option value="">سال</option>
-            <?php for ($i = 1400; $i <= 1430; $i++):?>
-                <option value="<?php echo $i?>"><?php echo $i?></option>
+            <?php for ($i = 1400; $i <= 1430; $i++): ?>
+                <option value="<?php echo $i ?>"><?php echo $i ?></option>
             <?php endfor; ?>
         </select>
     </div>
@@ -100,11 +100,10 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
         <input type="text" class="filter_list_installment" id="code_personnel">
         <label for="id_order">تلفن همراه</label>
         <input type="text" class="filter_list_installment" id="mobile">
-        <form action="" method="post" enctype="multipart/form-data" >
-            <button type="submit" name="export_excel" id="export_installment_excel" class="button-primary">خروجی اکسل</button>
+        <form action="" method="post" enctype="multipart/form-data">
+            <button type="submit" name="export_excel" id="export_installment_excel" class="button-primary">خروجی اکسل
+            </button>
         </form>
-
-
 
 
     </div>
@@ -166,11 +165,15 @@ $all_installment = $wpdb->get_results("select * from {$wpdb->prefix}installments
                 <td>
                     <?php
 
-                    $seller = get_post_field('post_author',$installment->id_product);
+                    $seller = get_post_field('post_author', $installment->id_product);
                     $author = get_user_by('id', $seller);
                     $vendor = dokan()->vendor->get($seller);
 
-                    $store_info = dokan_get_store_info($author->ID);
+                    if ($author) {
+                        $store_info = dokan_get_store_info($author->ID);
+                    }
+
+
                     if (!empty($store_info['store_name'])) { ?>
                         <span class="details">
                         <?php printf(' <a href="%s">%s</a>', $vendor->get_shop_url(), $vendor->get_shop_name()); ?>
